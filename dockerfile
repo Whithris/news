@@ -1,23 +1,17 @@
-# Используем базовый образ Node.js
 FROM node:18-alpine
 
-# Устанавливаем рабочую директорию
-WORKDIR /app
+COPY package*.json .
 
-# Копируем package.json и package-lock.json для установки зависимостей
-COPY package*.json ./
+RUN npm install --save-dev ts-node
 
-# Устанавливаем зависимости
-RUN npm install
+COPY prisma .
 
-# Копируем весь проект в контейнер
+RUN npx prisma generate
+
 COPY . .
 
-# Компилируем Next.js в production-режим
-RUN npm run build
+#RUN npm run build
 
-# Указываем порт, который будет слушать приложение
-EXPOSE 3000
+#EXPOSE 3000
 
-# Запускаем приложение
-CMD ["npm", "start"]
+#CMD ["npm", "start"]

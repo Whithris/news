@@ -1,4 +1,3 @@
-"use server";
 import NewsComponent from "@/app/ui/news-component";
 import { getNewsById } from "@/app/lib/data";
 

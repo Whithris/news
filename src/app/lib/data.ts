@@ -4,17 +4,6 @@ import { news, PrismaClient } from "@prisma/client"
 import { unstable_noStore as noStore } from "next/cache";
 import { Prisma } from "@prisma/client"
 
-export async function addNews(newsData: Prisma.newsCreateInput) {
-  noStore();
-  try {
-    console.log('addNews');
-    const newNews = await prisma.news.create({data: newsData, });
-    return newNews;
-  } catch (error) {
-    console.error("Error adding news:", error);
-    throw new Error("Failed to add news.");
-  }
-}
 export async function getAllNews() {
   noStore();
   try {
